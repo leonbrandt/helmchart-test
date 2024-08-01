@@ -8,6 +8,7 @@ env:
   CHART_NAME: "empty-chart"
   CHART_BASE_DIR: "./charts/"
   OCI_URL: "oci://ghcr.io/leonbrandt/"
+  REPOSITORY: ${{ github.event.repository.name }}
   VERSION: ${{ github.event.release.tag_name }}
 
 jobs:
@@ -17,8 +18,8 @@ jobs:
       - name: Env
         run: |
           echo "CHART_DIR=${CHART_BASE_DIR}${CHART_NAME}" >> "$GITHUB_ENV"
-          echo "OCI_TARGET=${OCI_URL}${CHART_NAME}" >> "$GITHUB_ENV"
-          echo "OCI_TARGET_DEBUG=${OCI_URL}${CHART_NAME}-anything" >> "$GITHUB_ENV"
+          echo "OCI_TARGET=${OCI_URL}${REPOSITORY}" >> "$GITHUB_ENV"
+          echo "OCI_TARGET_DEBUG=${OCI_URL}${REPOSITORY}/anything" >> "$GITHUB_ENV"
 
       - name: Checkout
         uses: actions/checkout@v4
