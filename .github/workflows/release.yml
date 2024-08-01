@@ -36,6 +36,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Log into ghcr.io (HELM)
+        run: |
+          helm registry login $REGISTRY -u $USERNAME -p $PASSWORD
+        env:
+          REGISTRY: ghcr.io
+          USERNAME: ${{ github.actor }}
+          PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Package Helm
         id: package
         run: |
