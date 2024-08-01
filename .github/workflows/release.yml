@@ -54,7 +54,7 @@ jobs:
         id: copy
         run: |
           cp $PACKAGE ${REPOSITORY}-${VERSION}.tgz
-          echo "package_cp=${REPOSITORY}-${VERSION}.tgz" >> "$GITHUB_OUTPUT"
+          echo "package=${REPOSITORY}-${VERSION}.tgz" >> "$GITHUB_OUTPUT"
         env:
           PACKAGE: ${{ steps.package.outputs.package }}
 
