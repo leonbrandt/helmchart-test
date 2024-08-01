@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 env:
-  CHART_DIR: "./empty-chart"
+  CHART_DIR: "./charts/empty-chart"
 
 jobs:
   check:
@@ -26,7 +26,6 @@ jobs:
       - name: Release
         uses: helm/chart-releaser-action@v1.6.0
         with:
-          charts_dir: "."
           skip_existing: true
           mark_as_latest: false
         env:
