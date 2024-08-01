@@ -8,7 +8,6 @@ env:
   CHART_NAME: "empty-chart"
   CHART_BASE_DIR: "./charts/"
   OCI_URL: "oci://ghcr.io/leonbrandt"
-  REPOSITORY: ${{ github.event.repository.name }}
   VERSION: ${{ github.event.release.tag_name }}
 
 jobs:
