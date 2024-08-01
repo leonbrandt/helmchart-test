@@ -18,7 +18,6 @@ jobs:
       - name: Env
         run: |
           echo "CHART_DIR=${CHART_BASE_DIR}${CHART_NAME}" >> "$GITHUB_ENV"
-          echo "OCI_TARGET=${OCI_URL}" >> "$GITHUB_ENV"
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -53,7 +52,7 @@ jobs:
       - name: Push Helm
         id: push
         run: |
-          helm push $PACKAGE $OCI_TARGET
+          helm push $PACKAGE $OCI_URL
         env:
           PACKAGE: ${{ steps.package.outputs.package }}
 
