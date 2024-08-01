@@ -6,7 +6,6 @@ on:
 
 env:
   CHART_NAME: "empty-chart"
-  CHART_BASE_DIR: "./"
   OCI_URL: "oci://ghcr.io/leonbrandt"
   VERSION: ${{ github.event.release.tag_name }}
 
@@ -17,10 +16,6 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Env
-        run: |
-          echo "CHART_DIR=${CHART_BASE_DIR}${CHART_NAME}" >> "$GITHUB_ENV"
-
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -41,7 +36,7 @@ jobs:
       - name: Package Helm
         id: package
         run: |
-          helm package $CHART_DIR --version $VERSION
+          helm package . --version $VERSION
           echo "package=${CHART_NAME}-${VERSION}.tgz" >> "$GITHUB_OUTPUT"
 
       - name: Push Helm
