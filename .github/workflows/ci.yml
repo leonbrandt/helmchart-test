@@ -3,11 +3,14 @@ name: CI
 on: [push]
 
 env:
+  CHARTS_BASE_DIR: "."
   CHART_DIR: "./empty-chart"
 
 jobs:
   check:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,4 +23,13 @@ jobs:
 
       - name: Lint Helm
         run: helm lint $CHART_DIR
+
+      - name: Release
+        uses: helm/chart-releaser-action@v1.6.0
+        with:
+          charts_dir: ${{ CHARTS_BASE_DIR }}
+          skip_existing: true
+          mark_as_latest: false
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
