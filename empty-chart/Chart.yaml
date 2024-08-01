@@ -1,6 +1,6 @@
 apiVersion: v2
 name: empty-chart
-description: Empty chart
+description: Empty chart (this is a change)
 
 type: application
 version: 0.1.0
