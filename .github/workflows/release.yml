@@ -17,12 +17,8 @@ jobs:
       - name: Env
         run: |
           echo "CHART_DIR=${CHART_BASE_DIR}${CHART_NAME}" >> "$GITHUB_ENV"
-          echo "OCI_TARGET=${OCI_URL}${CHART_NAME}:${VERSION}" >> "$GITHUB_ENV"
-
-      - name: DEBUG
-        run: |
-          echo "${VERSION}"
-          echo "${OCI_TARGET}"
+          echo "OCI_TARGET=${OCI_URL}${CHART_NAME}" >> "$GITHUB_ENV"
+          echo "OCI_TARGET_DEBUG=${OCI_URL}${CHART_NAME}-anything" >> "$GITHUB_ENV"
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -48,7 +44,9 @@ jobs:
 
       - name: Push Helm
         id: push
-        run: helm push $PACKAGE $OCI_TARGET
+        run: |
+          helm push $PACKAGE $OCI_TARGET
+          helm push $PACKAGE $OCI_TARGET_DEBUG
         env:
           PACKAGE: ${{ steps.package.outputs.package }}
 
