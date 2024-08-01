@@ -25,7 +25,7 @@ jobs:
 
       - name: Release
         uses: helm/chart-releaser-action@v1.6.0
-        with:
+        # with:
           # skip_existing: true
           # mark_as_latest: false
         env:
