@@ -17,7 +17,7 @@ jobs:
       - name: Env
         run: |
           echo "CHART_DIR=${CHART_BASE_DIR}${CHART_NAME}" >> "$GITHUB_ENV"
-          echo "OCI_TARGET=${OCI_URL}${CHART_NAME}:${VERSION}"
+          echo "OCI_TARGET=${OCI_URL}${CHART_NAME}:${VERSION}" >> "$GITHUB_ENV"
 
       - name: Checkout
         uses: actions/checkout@v4
