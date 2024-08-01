@@ -50,10 +50,16 @@ jobs:
           helm package $CHART_DIR --version $VERSION
           echo "package=${CHART_NAME}-${VERSION}.tgz" >> "$GITHUB_OUTPUT"
 
+      - name: Copy test
+        run: |
+          cp $PACKAGE ${REPOSITORY}-${VERSION}.tgz
+        env:
+          PACKAGE: ${{ steps.package.outputs.package }}
+
       - name: Push Helm
         id: push
         run: |
-          helm push $PACKAGE $OCI_TARGET
+          helm push $REPOSITORY $OCI_TARGET
         env:
           PACKAGE: ${{ steps.package.outputs.package }}
 
