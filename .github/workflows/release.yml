@@ -10,6 +10,9 @@ env:
   OCI_URL: "oci://ghcr.io/leonbrandt"
   VERSION: ${{ github.event.release.tag_name }}
 
+permissions:
+  packages: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
