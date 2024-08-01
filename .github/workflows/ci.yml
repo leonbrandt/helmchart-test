@@ -4,7 +4,7 @@ on: [ push ]
 
 env:
   CHART_NAME: "empty-chart"
-  CHART_DIR: "./charts/${{ env.CHART_NAME }}"
+  CHART_DIR: "./charts/${{ CHART_NAME }}"
 
 jobs:
   check:
